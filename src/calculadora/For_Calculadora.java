@@ -4,7 +4,7 @@ import javax.swing.JComponent;
 
 public class For_Calculadora extends javax.swing.JFrame {
     Pantalla pantalla;
-    Operaciones operacion = new Operaciones();
+    Fachada operacion = new Fachada();
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(For_Calculadora.class.getName());
     private Double numero1 = null;
     private Double numero2 = null;
@@ -439,19 +439,35 @@ public class For_Calculadora extends javax.swing.JFrame {
     }//GEN-LAST:event_jBoton3ActionPerformed
 
     private void jBotonDivisionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotonDivisionActionPerformed
-        operar("/");
+        String operador = pantalla.obtenerUltimoCaracter();
+        if (!operador.equals("/") && !operador.equals(""))
+        {
+            operar("/");
+        }
     }//GEN-LAST:event_jBotonDivisionActionPerformed
 
     private void jBotonMultiplicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotonMultiplicarActionPerformed
-        operar("*");
+        String operador = pantalla.obtenerUltimoCaracter();
+        if (!operador.equals("*") && !operador.equals(""))
+        {
+            operar("*");
+        }
     }//GEN-LAST:event_jBotonMultiplicarActionPerformed
 
     private void jBotonRestarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotonRestarActionPerformed
-        operar("-");
+        String operador = pantalla.obtenerUltimoCaracter();
+        if (!operador.equals("-") && !operador.equals(""))
+        {
+            operar("-");
+        }
     }//GEN-LAST:event_jBotonRestarActionPerformed
 
     private void jBotonSumarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotonSumarActionPerformed
-        operar("+");
+        String operador = pantalla.obtenerUltimoCaracter();
+        if (!operador.equals("+") && !operador.equals(""))
+        {
+            operar("+");
+        }
     }//GEN-LAST:event_jBotonSumarActionPerformed
 
     private void jBoton0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBoton0ActionPerformed
@@ -501,6 +517,8 @@ public class For_Calculadora extends javax.swing.JFrame {
                 operadorFinal = segundaOperacion;
             }
             segundaOperacion = op;
+            
+            
             // Se realiza las operaciones programadas por defecto
             switch (operadorFinal)
             {
@@ -511,7 +529,7 @@ public class For_Calculadora extends javax.swing.JFrame {
                     respuesta = operacion.restar(numero1, numero2);
                 break;
                 case "*":
-                    respuesta = operacion.multiplicarar(numero1, numero2);
+                    respuesta = operacion.multiplicar(numero1, numero2);
                 break;
                 case "/":
                     if (numero2==0)

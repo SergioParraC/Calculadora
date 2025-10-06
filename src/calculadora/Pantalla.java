@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 public class Pantalla {
     private JLabel pantalla;
     DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.US);
-    private DecimalFormat df = new DecimalFormat("0.##########"); 
+    private DecimalFormat df = new DecimalFormat("0.##########", symbols); 
     public Pantalla (JLabel pantalla)
     {
         this.pantalla = pantalla;
@@ -44,5 +44,14 @@ public class Pantalla {
     public void limpiarPantalla()
     {
         pantalla.setText("");
+    }
+    public String obtenerUltimoCaracter() {
+        String expresion = pantalla.getText();
+
+        if (expresion == null || expresion.isEmpty()) {
+            return ""; // devuelve vacío si no hay nada en pantalla
+        }
+
+        return String.valueOf(expresion.charAt(expresion.length() - 1));
     }
 }
